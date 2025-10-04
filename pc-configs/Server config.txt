@@ -1,0 +1,6 @@
+
+Server Configuration 
+
+| Device      | Interface | IP Address     | Subnet Mask   | Default Gateway | VLAN | Notes                 |
+| ----------- | --------- | -------------- | ------------- | --------------- | ---- | --------------------- |
+| Server1     | NIC       | 192.168.10.100 | 255.255.255.0 | 192.168.10.1    | 10   | Connected to SW1 F0/4 |
