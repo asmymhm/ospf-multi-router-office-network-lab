@@ -1,33 +1,35 @@
-# Project 3 — OSPF Multi-Router Office Network
+# 🏢 OSPF Multi-Router Office Network
 ---
 Table of Contents
 
-1.  [Project Overview](#project-overview)
-2.  [Project Objectives](#project-objectives)
-3.  [Network Topology](#network-topology)
-4.  [Device Interface Table](#device-interface-table)
-5.  [IP Addressing Table](#ip-addressing-table)
-6.  [Lab Steps](#lab-steps)
-7.  [Device Configuration](#device-configuration)
-	- [Router 1](#router-1)
-	- [Router 2](#router-2)
-	- [Router 3](#router-3)
-	- [Switch 1](#switch-1)
-	- [Switch 2](#switch-2)
-	- [Switch 3](#switch-3)
-	- [PC Configuration](#pc-configuration)
-	- [Server Configuration](#server-configuration)
-8.  [Verification](#verification)
-9.  [Folder Structure](#folder-structure)
+1.  [📘 Project Overview](#-project-overview)
+2.  [🎯 Project Objectives](#-project-objectives)
+3.  [🌐 Network Topology](#-network-topology)
+4.  [🗂️ Device Interface Table](#-device-interface-table)
+5.  [📝 IP Addressing Table](#-ip-addressing-table)
+6.  [🛠️ Lab Steps](#-lab-steps)
+7.  [💻 Device Configuration](#-device-configuration)
+	- [🚦 Router 1](#-router-1)
+	- [🚦 Router 2](#-router-2)
+	- [🚦 Router 3](#-router-3)
+	- [🔀 Switch 1](#-switch-1)
+	- [🔀 Switch 2](#-switch-2)
+	- [🔀 Switch 3](#-switch-3)
+	- [🖥️ PC & Server Configuration](#-pc-and-server-configuration)
+8.  [✅ Verification](#verification)
+9.  [⚡ How to Run Lab](#-how-to-run-lab)
+10. [📂 Folder Structure](#-folder-structure)
+11. [🎓 Learning Outcomes](#-learning-outcomes)
+12. [ℹ️ Repository Info](#-repository-info)
 
 ---
-## Project overview
+## 📘 Project overview
 
 Implement OSPF across multiple routers to demonstrate dynamic routing in an enterprise environment. 
 The lab uses Packet Tracer.
 
 ---
-## Project Objective
+## 🎯 Project Objective
 
 - Configure OSPF area 0 across 3 routers.
 - Configure serial WAN links (/30) between routers.
@@ -35,7 +37,7 @@ The lab uses Packet Tracer.
 - Verify OSPF adjacency, routing, and end-to-end connectivity.
 
 ---
-## Network Topology
+## 🌐 Network Topology
 - 3 Routers (R1, R2, R3)
 - 3 Switches (SW1, SW2, SW3)
 - 6 PCs (PC1..PC6) — 2 per LAN
@@ -51,7 +53,7 @@ The lab uses Packet Tracer.
 - WAN2 (R2-R3): 10.0.23.0/30
 
 ---
-## Device Interface table
+## 🗂️ Device Interface table
 
 Connections:
 
@@ -73,7 +75,7 @@ PC5 Fa0/2 <-> SW3 Fa0/2
 PC6 Fa0/3 <-> SW3 Fa0/3
 
 ---
-## IP addressing 
+## 📝 IP addressing 
 
 | Device | Interface / Notes | IP Address / Mask  | Gateway      |
 |--------|-------------------|------------------- |------------- |
@@ -98,7 +100,7 @@ Router addresses:
 | R3     | S0/3/0    | 10.0.23.2/30 (DTE) |
 
 ---
-## Lab steps
+## 🛠️ Lab steps
 
 1. Build topology in Packet Tracer (place devices & connect cables).
 2. Configure PCs and Server (static IPs).
@@ -110,123 +112,42 @@ Router addresses:
 8. Capture screenshots.
 
 ---
-## Device Configuration
+## 💻 Device Configuration
 
-## Router 1 
+## 🚦 Router 1 
 
-! R1 config
-```text
-hostname R1
-no ip domain-lookup
-```
 ```text
 interface GigabitEthernet0/0
 description LAN to SW1
 ip address 192.168.10.1 255.255.255.0
 no shutdown
 ```
-```text
-interface serial0/3/0
-description Serial to R2 (10.0.12.0/30) - DCE
-ip address 10.0.12.1 255.255.255.252
-clock rate 64000
-no shutdown
-```
-```text
-router ospf 1
-network 192.168.10.0 0.0.0.255 area 0
-network 10.0.12.0 0.0.0.3 area 0
-```
-```text
-line con 0
-logging synchronous
-```
-```text
-end
-write
-```
----
-## Router 2
+[View Full Configuration File →](router-configs/r1.cfg)
 
-! R2 config
-```text
-hostname R2
-no ip domain-lookup
-```
+---
+## 🚦 Router 2
+
 ```text
 interface GigabitEthernet0/0
 description LAN to SW2
 ip address 192.168.20.1 255.255.255.0
 no shutdown
 ```
-```text
-interface Serial0/3/0
-description Serial to R1 (10.0.12.0/30) - DTE
-ip address 10.0.12.2 255.255.255.252
-no shutdown
-```
-```text
-interface Serial0/3/1
-description Serial to R3 (10.0.23.0/30) - DCE
-ip address 10.0.23.1 255.255.255.252
-clock rate 64000
-no shutdown
-```
-```text
-router ospf 1
-network 192.168.20.0 0.0.0.255 area 0
-network 10.0.12.0 0.0.0.3 area 0
-network 10.0.23.0 0.0.0.3 area 0
-```
-```text
-line con 0
-logging synchronous
-```
-```text
-end
-write
-```
+[View Full Configuration File →](router-configs/r2.cfg)
 ---
-## Router 3
+## 🚦 Router 3
 
-! R3 config
-```text
-hostname R3
-no ip domain-lookup
-```
 ```text
 interface GigabitEthernet0/0
 description LAN to SW3
 ip address 192.168.30.1 255.255.255.0
 no shutdown
 ```
-```text
-interface Serial0/3/0
-description Serial to R2 (10.0.23.0/30) - DTE
-ip address 10.0.23.2 255.255.255.252
-no shutdown
-```
-```text
-router ospf 1
-network 192.168.30.0 0.0.0.255 area 0
-network 10.0.23.0 0.0.0.3 area 0
-```
-```text
-line con 0
-logging synchronous
-```
-```text
-end
-write
-```
+[View Full Configuration File →](router-configs/r3.cfg)
 ---
-## Switch 1
 
-! SW1 config
-```text
-hostname SW1
-no ip domain-lookup
-```
+## 🔀 Switch 1
+
 !Create VLAN 10
 ```text
 vlan 10
@@ -240,47 +161,10 @@ switchport mode access
 switchport access vlan 10
 no shutdown
 ```
-!PCs and Server
-```text
-interface FastEthernet0/2
-description PC1 - 192.168.10.11
-switchport mode access
-switchport access vlan 10
-no shutdown
-
-interface FastEthernet0/3
-description PC2 - 192.168.10.12
-switchport mode access
-switchport access vlan 10
-no shutdown
-
-interface FastEthernet0/4
-description Server1 - 192.168.10.100
-switchport mode access
-switchport access vlan 10
-no shutdown
-```
-!Spanning tree
-```text
-spanning-tree mode pvst
-```
-!Enable all ports
-```text
-interface range FastEthernet0/1-24
-no shutdown
-
-end
-write
-```
+[View Full Configuration File →](switch-configs/sw1.cfg)
 ---
-## Switch 2
+## 🔀 Switch 2
 
-! SW2 config
-```text
-hostname SW2
-no ip domain-lookup
-```
-!Create VLAN 20
 ```text
 vlan 20
 name Finance
@@ -293,41 +177,10 @@ switchport mode access
 switchport access vlan 20
 no shutdown
 ```
-!PCs 
-```text
-interface FastEthernet0/2
-description PC3 - 192.168.20.21
-switchport mode access
-switchport access vlan 20
-no shutdown
-
-interface FastEthernet0/3
-description PC4 - 192.168.20.22
-switchport mode access
-switchport access vlan 20
-no shutdown
-```
-!Spanning tree
-```text
-spanning-tree mode pvst
-```
-!Enable all ports
-```text
-interface FastEthernet0/1-24
-no shutdown
-
-end
-write
-```
+[View Full Configuration File →](switch-configs/sw2.cfg)
 ---
-## Switch 3
+## 🔀 Switch 3
 
-! SW3 config
-```text
-hostname SW3
-no ip domain-lookup
-```
-!Create VLAN 30
 ```text
 vlan 30
 name Sales
@@ -340,169 +193,179 @@ switchport mode access
 switchport access vlan 30
 no shutdown
 ```
-!PCs
-```text
-interface FastEthernet0/2
-description PC5 - 192.168.30.31
-switchport mode access
-switchport access vlan 30
-no shutdown
-
-interface FastEthernet0/3
-description PC6 - 192.168.30.32
-switchport mode access
-switchport access vlan 30
-no shutdown
-```
-!Spanning Tree
-```text
-spanning-tree mode pvst
-```
-!Enable all ports
-```text
-interface FastEthernet0/1-24
-no shutdown
-
-end
-write
-```
+[View Full Configuration File →](switch-configs/sw3.cfg)
 ---
-## PC Configuraton
+## 🖥️ PC & Server Configuration
 
 | Device      | Interface | IP Address     | Subnet Mask   | Default Gateway | VLAN | Notes                 |
 | ----------- | --------- | -------------- | ------------- | --------------- | ---- | --------------------- |
 | **PC1**     | NIC       | 192.168.10.11  | 255.255.255.0 | 192.168.10.1    | 10   | Connected to SW1 F0/2 |
 | **PC2**     | NIC       | 192.168.10.12  | 255.255.255.0 | 192.168.10.1    | 10   | Connected to SW1 F0/3 |
-| **PC3**     | NIC       | 192.168.20.21  | 255.255.255.0 | 192.168.20.1    | 20   | Connected to SW2 F0/2 |
-| **PC4**     | NIC       | 192.168.20.22  | 255.255.255.0 | 192.168.20.1    | 20   | Connected to SW2 F0/3 |
-| **PC5**     | NIC       | 192.168.30.31  | 255.255.255.0 | 192.168.30.1    | 30   | Connected to SW3 F0/2 |
-| **PC6**     | NIC       | 192.168.30.32  | 255.255.255.0 | 192.168.30.1    | 30   | Connected to SW3 F0/3 |
 
----
-## Server Configuration
+Refer to full files: 
+[PC Configs →](pc-configs/pc-configs.txt)
 
-| Device      | Interface | IP Address     | Subnet Mask   | Default Gateway | VLAN | Notes                 |
-| ----------- | --------- | -------------- | ------------- | --------------- | ---- | --------------------- |
+
 | **Server1** | NIC       | 192.168.10.100 | 255.255.255.0 | 192.168.10.1    | 10   | Connected to SW1 F0/4 |
 
+Refer to full files: 
+[SERVER Configs →](pc-configs/server-configs.txt)
+
 ---
-## Verification
+## ✅ Verification
 
-<img src="topology\topology_overview.png" alt="TOPOLOGY OVERVIEW" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🗺️ Topology Screenshot 
+
+shows the full lab layout in Packet Tracer.
+<img src="topology/topology_overview.png" alt="TOPOLOGY OVERVIEW" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 
-## 1. VLAN Verification
+## 1. 🔍 VLAN Verification
 - Verified VLANs on SW1, SW2, SW3. All access ports assigned correctly.
 - 
-**SW1**
-<img src="screenshots\sw1_vlan.png" alt="SW1 VLAN" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🔀**SW1**
+<img src="screenshots/sw1_vlan.png" alt="SW1 VLAN" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**SW2**
-<img src="screenshots\sw2_vlan.png" alt="SW2 VLAN" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🔀**SW2**
+<img src="screenshots/sw2_vlan.png" alt="SW2 VLAN" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**SW3**
-<img src="screenshots\sw3_vlan.png" alt="SW3 VLAN" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🔀**SW3**
+<img src="screenshots/sw3_vlan.png" alt="SW3 VLAN" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 
-## 2. MAC Address Table Verification
+## 2. 🖧 MAC Address Table Verification
 - Verified MAC addresses learned correctly on each switch.
 - 
-**Sw1**
-<img src="screenshots\sw1_mac.png" alt="SW1 MAC" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🔀**Sw1**
+<img src="screenshots/sw1_mac.png" alt="SW1 MAC" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**SW2**
-<img src="screenshots\sw2_mac.png" alt="SW2 MAC" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🔀**SW2**
+<img src="screenshots/sw2_mac.png" alt="SW2 MAC" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**SW3**
-<img src="screenshots\sw3_mac.png" alt="SW3 MAC" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🔀**SW3**
+<img src="screenshots/sw3_mac.png" alt="SW3 MAC" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-## 3. Router Interfaces Verification
+## 3. 🚦 Router Interfaces Verification
 - All LAN and Serial interfaces are up with correct IPs.
 
-**R1**
-<img src="screenshots\r1_ip_int.png" alt="R1 IP INTERFACE" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🚦**R1**
+<img src="screenshots/r1_ip_int.png" alt="R1 IP INTERFACE" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**R2**
-<img src="screenshots\r2_ip_int.png" alt="R2 IP INTERFACE" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🚦**R2**
+<img src="screenshots/r2_ip_int.png" alt="R2 IP INTERFACE" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**R3**
-<img src="screenshots\r3_ip_int.png" alt="R3 IP INTERFACE" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🚦**R3**
+<img src="screenshots/r3_ip_int.png" alt="R3 IP INTERFACE" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-## 4. OSPF Neighbor Verification
+## 4. 🤝 OSPF Neighbor Verification
 - R1 sees R2, R2 sees R1 & R3, R3 sees R2.
 
-**R1**
-<img src="screenshots\r1_ospf_neighbor.png" alt="R1 OSPF Neighbour" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🚦**R1**
+<img src="screenshots/r1_ospf_neighbor.png" alt="R1 OSPF Neighbour" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**R2**
-<img src="screenshots\r2_ospf_neighbor.png" alt="R2 OSPF Neighbour" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🚦**R2**
+<img src="screenshots/r2_ospf_neighbor.png" alt="R2 OSPF Neighbour" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**R3**
-<img src="screenshots\r3_ospf_neighbor.png" alt="R3 OSPF Neighbour" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🚦**R3**
+<img src="screenshots/r3_ospf_neighbor.png" alt="R3 OSPF Neighbour" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-## 5. OSPF Routing Table Verification
+## 5. 🗺️ OSPF Routing Table Verification
 - All routers have OSPF learned routes to all LANs.
 
-**R1**
-<img src="screenshots\r1_ospf_route.png" alt="R1 OSPF Route" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🚦**R1**
+<img src="screenshots/r1_ospf_route.png" alt="R1 OSPF Route" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**R2**
-<img src="screenshots\r2_ospf_route.png" alt="R2 OSPF Route" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🚦**R2**
+<img src="screenshots/r2_ospf_route.png" alt="R2 OSPF Route" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**R3**
-<img src="screenshots\r3_ospf_route.png" alt="R3 OSPF Route" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+🚦**R3**
+<img src="screenshots/r3_ospf_route.png" alt="R3 OSPF Route" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-## 6. Ping Tests
+## 6. 📶 Ping Tests
 
-**PC1 Ping R1**
-<img src="screenshots\pc1_ping_r1.png" alt="PC1 Ping R1" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+📶**PC1 Ping R1**
+<img src="screenshots/pc1_ping_r1.png" alt="PC1 Ping R1" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**PC1 Ping PC3**
-<img src="screenshots\pc1_ping_pc3.png" alt="PC1 Ping PC3" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+📶**PC1 Ping PC3**
+<img src="screenshots/pc1_ping_pc3.png" alt="PC1 Ping PC3" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**PC1 Ping PC5**
-<img src="screenshots\pc1_ping_pc5.png" alt="PC1 Ping PC5" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+📶**PC1 Ping PC5**
+<img src="screenshots/pc1_ping_pc5.png" alt="PC1 Ping PC5" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**PC1 Ping Server**
-<img src="screenshots\pc1_ping_server.png" alt="PC1 Ping SERVER" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+📶**PC1 Ping Server**
+<img src="screenshots/pc1_ping_server.png" alt="PC1 Ping SERVER" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**PC3 Ping R2**
-<img src="screenshots\pc3_ping_r2.png" alt="PC3 Ping ROUTER2" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+📶**PC3 Ping R2**
+<img src="screenshots/pc3_ping_r2.png" alt="PC3 Ping ROUTER2" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**PC3 Ping PC1**
-<img src="screenshots\pc3_ping_pc1.png" alt="PC3 Ping PC1" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+📶**PC3 Ping PC1**
+<img src="screenshots/pc3_ping_pc1.png" alt="PC3 Ping PC1" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**PC3 Ping PC5**
-<img src="screenshots\pc3_ping_pc5.png" alt="PC3 Ping PC5" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+📶**PC3 Ping PC5**
+<img src="screenshots/pc3_ping_pc5.png" alt="PC3 Ping PC5" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**PC5 ping R3**
-<img src="screenshots\pc5_ping_r3.png" alt="PC5 Ping R3" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+📶**PC5 ping R3**
+<img src="screenshots/pc5_ping_r3.png" alt="PC5 Ping R3" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**PC5 Ping Server**
-<img src="screenshots\pc5_ping_server.png" alt="PC5 Ping SERVER" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+📶**PC5 Ping Server**
+<img src="screenshots/pc5_ping_server.png" alt="PC5 Ping SERVER" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-**PC5 Ping PC3**
-<img src="screenshots\pc5_ping_pc3.png" alt="PC5 Ping PC3" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+📶**PC5 Ping PC3**
+<img src="screenshots/pc5_ping_pc3.png" alt="PC5 Ping PC3" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 
-## 7. Optional: Traceroute Verification
+## 7. ✨ Optional: Traceroute Verification
 
-**PC6 to Server to verify path through routers.**
-<img src="screenshots\pc6_traceroute_server.png" alt="PC6 TRACEROUTE SERVER" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+📶**PC6 to Server to verify path through routers.**
+<img src="screenshots/pc6_traceroute_server.png" alt="PC6 TRACEROUTE SERVER" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 ---
-## Folder Structure
+
+## ⚡ How to Run Lab
+
+1. **Open the lab file**
+
+   - Open Packet Tracer and load the lab file located at:
+     lab-files/ospf-multi-router-office-network.pkt
+
+2. **Verify device connectivity**
+
+   - Check that all PCs, switches, and routers are powered on and connected correctly.
+
+3. **Apply configurations (if needed)**
+
+   - Router configurations: router-configs/r1.cfg, r2.cfg, r3.cfg
+
+   - Switch configurations: switch-configs/sw1.cfg, sw2.cfg, sw3.cfg
+
+   - PC and Server configurations: pc-configs/pc-configs.txt, server-configs.txt
+
+4. **Follow lab steps**
+
+   - Configure OSPF area 0 across all routers
+
+   - Verify VLAN assignments and switch connectivity
+
+   - Test end-to-end connectivity using ping and traceroute
+
+5. **verification screenshots**
+
+   - Save screenshots of OSPF neighbors, routing tables, VLAN tables, and ping results for documentation
+
+---
+
+## 📂 Folder Structure
 
 ospf-multi-router-office-network/
 ├── drawio/
 │   └── topology.drawio          
 │
 ├── lab-files/
-│   └── project-3.pkt            # Packet Tracer lab file
+│   └── ospf-multi-router-office-network.pkt            
 │
 ├── pc-configs/
-│   ├── PC config.txt
-│   └── Server config.txt
+│   ├── pc-configs.txt
+│   └── server-configs.txt
 │
 ├── router-configs/
 │   ├── r1.cfg
@@ -548,5 +411,31 @@ ospf-multi-router-office-network/
 ├── README.md
 ├── verification.md
 └── LICENSE
+
+---
+
+## 🎓 Learning Outcomes
+
+By completing this lab, you will be able to:
+
+- Configure **OSPF dynamic routing** across multiple routers in an enterprise network
+
+- Assign and verify **VLANs** and switch port configurations
+
+- Configure router **serial WAN links (/30)** for point-to-point connectivity
+
+- Verify **routing tables** and **OSPF neighbor relationships**
+
+- Perform **end-to-end connectivity tests** using ping and traceroute
+
+- Understand **device interface management** and subnetting for small office networks
+
+- Use **Cisco Packet Tracer** for practical network simulation and documentation
+
+---
+
+### 📂 Repository Info
+This project is part of my **CCNA Lab Portfolio**.  
+Explore more labs here 👉 [@asmymhm](https://github.com/asmymhm)
 
 ---
