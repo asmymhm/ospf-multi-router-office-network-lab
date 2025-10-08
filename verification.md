@@ -7,8 +7,8 @@
 3. [🚦 Router Interface Verification](#-router-interface-verification)
 4. [🤝 OSPF Neighbor Verification](#-opsf-neighbor-verification)
 5. [🗺️ OSPF Routing Table Verification](#-ospf-routing-table-verification)
-6. [📶 Ping Tests](#- ping-tests)
-7. [✨ Optional: Traceroute Verification](#-optional:-traceroute-verification)
+6. [📶 Ping Tests](#-ping-tests)
+7. [✨ Optional: Traceroute Verification](#-optional:traceroute-verification)
 
 
 ## 1. 🔍 VLAN Verification
