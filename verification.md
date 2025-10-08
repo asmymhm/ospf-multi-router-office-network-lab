@@ -5,10 +5,11 @@
 1. [🔍 VLAN Verification](#-vlan-verification)
 2. [🖧 MAC Address Table Verification](#-mac-address-table-verification)
 3. [🚦 Router Interface Verification](#-router-interface-verification)
-4. [🤝 OSPF Neighbor Verification](#-opsf-neighbor-verification)
+4. [🤝 OSPF Neighbor Verification](#-ospf-neighbor-verification)
 5. [🗺️ OSPF Routing Table Verification](#-ospf-routing-table-verification)
 6. [📶 Ping Tests](#-ping-tests)
-7. [✨ Optional: Traceroute Verification](#-optional:traceroute-verification)
+7. [✨ Optional Traceroute Verification](#-optional-traceroute-verification)
+
 
 
 ## 1. 🔍 VLAN Verification
@@ -46,7 +47,7 @@
 | PC5    | 192.168.10.100 | Success | `screenshots/pc5_ping_server.png` |
 | PC5    | 192.168.20.21 | Success | `screenshots/pc5_ping_pc3.png` |
 
-## 7. ✨ Optional: Traceroute Verification
+## 7. ✨ Optional Traceroute Verification
 - PC1 to Server1 to verify path through routers.
 - Screenshot: `screenshots/pc1_traceroute_server.png`
 
