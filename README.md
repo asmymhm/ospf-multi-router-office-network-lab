@@ -224,99 +224,129 @@ shows the full lab layout in Packet Tracer.
 - Verified VLANs on SW1, SW2, SW3. All access ports assigned correctly.
 - 
 🔀**SW1**
+
 <img src="screenshots/sw1_vlan.png" alt="SW1 VLAN" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 🔀**SW2**
+
 <img src="screenshots/sw2_vlan.png" alt="SW2 VLAN" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 🔀**SW3**
+
 <img src="screenshots/sw3_vlan.png" alt="SW3 VLAN" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 
 ## 2. 🖧 MAC Address Table Verification
+
 - Verified MAC addresses learned correctly on each switch.
-- 
+
 🔀**Sw1**
+
 <img src="screenshots/sw1_mac.png" alt="SW1 MAC" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 🔀**SW2**
+
 <img src="screenshots/sw2_mac.png" alt="SW2 MAC" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 🔀**SW3**
+
 <img src="screenshots/sw3_mac.png" alt="SW3 MAC" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 ## 3. 🚦 Router Interfaces Verification
+
 - All LAN and Serial interfaces are up with correct IPs.
 
 🚦**R1**
+
 <img src="screenshots/r1_ip_int.png" alt="R1 IP INTERFACE" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 🚦**R2**
+
 <img src="screenshots/r2_ip_int.png" alt="R2 IP INTERFACE" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 🚦**R3**
+
 <img src="screenshots/r3_ip_int.png" alt="R3 IP INTERFACE" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 ## 4. 🤝 OSPF Neighbor Verification
+
 - R1 sees R2, R2 sees R1 & R3, R3 sees R2.
 
 🚦**R1**
+
 <img src="screenshots/r1_ospf_neighbor.png" alt="R1 OSPF Neighbour" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 🚦**R2**
+
 <img src="screenshots/r2_ospf_neighbor.png" alt="R2 OSPF Neighbour" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 🚦**R3**
+
 <img src="screenshots/r3_ospf_neighbor.png" alt="R3 OSPF Neighbour" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 ## 5. 🗺️ OSPF Routing Table Verification
+
 - All routers have OSPF learned routes to all LANs.
 
 🚦**R1**
+
 <img src="screenshots/r1_ospf_route.png" alt="R1 OSPF Route" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 🚦**R2**
+
 <img src="screenshots/r2_ospf_route.png" alt="R2 OSPF Route" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 🚦**R3**
+
 <img src="screenshots/r3_ospf_route.png" alt="R3 OSPF Route" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 ## 6. 📶 Ping Tests
 
 📶**PC1 Ping R1**
+
 <img src="screenshots/pc1_ping_r1.png" alt="PC1 Ping R1" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 📶**PC1 Ping PC3**
+
 <img src="screenshots/pc1_ping_pc3.png" alt="PC1 Ping PC3" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 📶**PC1 Ping PC5**
+
 <img src="screenshots/pc1_ping_pc5.png" alt="PC1 Ping PC5" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 📶**PC1 Ping Server**
+
 <img src="screenshots/pc1_ping_server.png" alt="PC1 Ping SERVER" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 📶**PC3 Ping R2**
+
 <img src="screenshots/pc3_ping_r2.png" alt="PC3 Ping ROUTER2" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 📶**PC3 Ping PC1**
+
 <img src="screenshots/pc3_ping_pc1.png" alt="PC3 Ping PC1" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 📶**PC3 Ping PC5**
+
 <img src="screenshots/pc3_ping_pc5.png" alt="PC3 Ping PC5" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 📶**PC5 ping R3**
+
 <img src="screenshots/pc5_ping_r3.png" alt="PC5 Ping R3" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 📶**PC5 Ping Server**
+
 <img src="screenshots/pc5_ping_server.png" alt="PC5 Ping SERVER" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 📶**PC5 Ping PC3**
+
 <img src="screenshots/pc5_ping_pc3.png" alt="PC5 Ping PC3" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 
 ## 7. ✨ Optional: Traceroute Verification
 
 📶**PC6 to Server to verify path through routers.**
+
 <img src="screenshots/pc6_traceroute_server.png" alt="PC6 TRACEROUTE SERVER" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 ---
