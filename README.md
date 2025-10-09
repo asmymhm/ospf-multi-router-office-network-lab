@@ -3,11 +3,11 @@
 Table of Contents
 
 1.  [📘 Project Overview](#-project-overview)
-2.  [🎯 Project Objectives](#-project-objectives)
+2.  [🎯 Project Objective](#-project-objective)
 3.  [🌐 Network Topology](#-network-topology)
 4.  [🗂️ Device Interface Table](#-device-interface-table)
 5.  [📝 IP Addressing Table](#-ip-addressing-table)
-6.  [🛠️ Lab Steps](#-lab-steps)
+6.  [🔧 Lab Steps](#-lab-steps)
 7.  [💻 Device Configuration](#-device-configuration)
 	- [🚦 Router 1](#-router-1)
 	- [🚦 Router 2](#-router-2)
@@ -15,8 +15,8 @@ Table of Contents
 	- [🔀 Switch 1](#-switch-1)
 	- [🔀 Switch 2](#-switch-2)
 	- [🔀 Switch 3](#-switch-3)
-	- [🖥️ PC & Server Configuration](#-pc-and-server-configuration)
-8.  [✅ Verification](#verification)
+	- [🖥️ PC & Server Configuration](#-pc--server-configuration)
+8.  [✅ Verification Commands](#-verification-commands)
 9.  [⚡ How to Run Lab](#-how-to-run-lab)
 10. [📂 Folder Structure](#-folder-structure)
 11. [🎓 Learning Outcomes](#-learning-outcomes)
@@ -43,7 +43,7 @@ The lab uses Packet Tracer.
 - 6 PCs (PC1..PC6) — 2 per LAN
 - 1 Server (Server1) in LAN1 (on SW1)
 
-<img src="topology\topology_overview.drawio.png" alt="TOPOLOGY OVERVIEW" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
+<img src="topology/topology_overview.drawio.png" alt="TOPOLOGY OVERVIEW" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 ## Subnets
 - LAN1: 192.168.10.0/24 (R1)
@@ -53,7 +53,7 @@ The lab uses Packet Tracer.
 - WAN2 (R2-R3): 10.0.23.0/30
 
 ---
-## 🗂️ Device Interface table
+## 📁 Device Interface Table
 
 Connections:
 
@@ -75,7 +75,7 @@ PC5 Fa0/2 <-> SW3 Fa0/2
 PC6 Fa0/3 <-> SW3 Fa0/3
 
 ---
-## 📝 IP addressing 
+## 📝 IP addressing Table
 
 | Device | Interface / Notes | IP Address / Mask  | Gateway      |
 |--------|-------------------|------------------- |------------- |
@@ -100,7 +100,7 @@ Router addresses:
 | R3     | S0/3/0    | 10.0.23.2/30 (DTE) |
 
 ---
-## 🛠️ Lab steps
+## 🔧 Lab Steps
 
 1. Build topology in Packet Tracer (place devices & connect cables).
 2. Configure PCs and Server (static IPs).
@@ -195,7 +195,7 @@ no shutdown
 ```
 [View Full Configuration File →](switch-configs/sw3.cfg)
 ---
-## 🖥️ PC & Server Configuration
+## 💻 PC & Server Configuration
 
 | Device      | Interface | IP Address     | Subnet Mask   | Default Gateway | VLAN | Notes                 |
 | ----------- | --------- | -------------- | ------------- | --------------- | ---- | --------------------- |
@@ -212,7 +212,7 @@ Refer to full files:
 [SERVER Configs →](pc-configs/server-configs.txt)
 
 ---
-## ✅ Verification
+## ✅ Verification Commands
 
 🗺️ Topology Screenshot 
 
@@ -220,7 +220,7 @@ shows the full lab layout in Packet Tracer.
 <img src="topology/topology_overview.png" alt="TOPOLOGY OVERVIEW" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 
-## 1. 🔍 VLAN Verification
+## 🔍 VLAN Verification
 - Verified VLANs on SW1, SW2, SW3. All access ports assigned correctly.
 - 
 🔀**SW1**
@@ -236,7 +236,7 @@ shows the full lab layout in Packet Tracer.
 <img src="screenshots/sw3_vlan.png" alt="SW3 VLAN" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 
-## 2. 🖧 MAC Address Table Verification
+## 🖧 MAC Address Table Verification
 
 - Verified MAC addresses learned correctly on each switch.
 
@@ -252,7 +252,7 @@ shows the full lab layout in Packet Tracer.
 
 <img src="screenshots/sw3_mac.png" alt="SW3 MAC" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-## 3. 🚦 Router Interfaces Verification
+## 🚦 Router Interfaces Verification
 
 - All LAN and Serial interfaces are up with correct IPs.
 
@@ -268,7 +268,7 @@ shows the full lab layout in Packet Tracer.
 
 <img src="screenshots/r3_ip_int.png" alt="R3 IP INTERFACE" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-## 4. 🤝 OSPF Neighbor Verification
+## 🤝 OSPF Neighbor Verification
 
 - R1 sees R2, R2 sees R1 & R3, R3 sees R2.
 
@@ -284,7 +284,7 @@ shows the full lab layout in Packet Tracer.
 
 <img src="screenshots/r3_ospf_neighbor.png" alt="R3 OSPF Neighbour" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-## 5. 🗺️ OSPF Routing Table Verification
+## 🗺️ OSPF Routing Table Verification
 
 - All routers have OSPF learned routes to all LANs.
 
@@ -300,7 +300,7 @@ shows the full lab layout in Packet Tracer.
 
 <img src="screenshots/r3_ospf_route.png" alt="R3 OSPF Route" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
-## 6. 📶 Ping Tests
+## 📶 Ping Tests
 
 📶**PC1 Ping R1**
 
@@ -343,7 +343,7 @@ shows the full lab layout in Packet Tracer.
 <img src="screenshots/pc5_ping_pc3.png" alt="PC5 Ping PC3" style="border:1px solid #ddd; padding:5px; max-width:100%; height:auto;">
 
 
-## 7. ✨ Optional: Traceroute Verification
+## ✨ Optional: Traceroute Verification
 
 📶**PC6 to Server to verify path through routers.**
 
