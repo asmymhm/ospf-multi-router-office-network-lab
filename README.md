@@ -134,6 +134,7 @@ ip address 192.168.20.1 255.255.255.0
 no shutdown
 ```
 [View Full Configuration File →](router-configs/r2.cfg)
+
 ---
 ## 🚦 Router 3
 
@@ -144,6 +145,7 @@ ip address 192.168.30.1 255.255.255.0
 no shutdown
 ```
 [View Full Configuration File →](router-configs/r3.cfg)
+
 ---
 
 ## 🔀 Switch 1
@@ -162,6 +164,7 @@ switchport access vlan 10
 no shutdown
 ```
 [View Full Configuration File →](switch-configs/sw1.cfg)
+
 ---
 ## 🔀 Switch 2
 
@@ -178,6 +181,7 @@ switchport access vlan 20
 no shutdown
 ```
 [View Full Configuration File →](switch-configs/sw2.cfg)
+
 ---
 ## 🔀 Switch 3
 
@@ -194,6 +198,7 @@ switchport access vlan 30
 no shutdown
 ```
 [View Full Configuration File →](switch-configs/sw3.cfg)
+
 ---
 ## 💻 PC & Server Configuration
 
