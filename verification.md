@@ -6,7 +6,7 @@
 2. [🖧 MAC Address Table Verification](#-mac-address-table-verification)
 3. [📡 Router Interface Verification](#-router-interface-verification)
 4. [🤝 OSPF Neighbor Verification](#-ospf-neighbor-verification)
-5. [🛰️ OSPF Routing Verification](#-ospf-routing-verification)
+5. [🧭 OSPF Routing Verification](#-ospf-routing-verification)
 6. [📶 Ping Tests](#-ping-tests)
 7. [✨ Optional Traceroute Verification](#-optional-traceroute-verification)
 
@@ -28,7 +28,7 @@
 - R1 sees R2, R2 sees R1 & R3, R3 sees R2.
 - Screenshots: `screenshots/r1_ospf_neighbor.png`, `screenshots/r2_ospf_neighbor.png`, `screenshots/r3_ospf_neighbor.png`
 ---
-## 🛰️ OSPF Routing Verification
+## 🧭 OSPF Routing Verification
 - All routers have OSPF learned routes to all LANs.
 - Screenshots: `screenshots/r1_ospf_route.png`, `screenshots/r2_ospf_route.png`, `screenshots/r3_ospf_route.png`
 ---
